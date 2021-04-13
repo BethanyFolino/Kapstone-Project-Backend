@@ -5,7 +5,7 @@ const config = require("config");
 // of middleware
 module.exports = function (req, res, next) {
   // Get the token from the header
-  const token = req.header(x - auth - token);
+  const token = req.header("x-auth-token");
 
   // Check if no token
   if (!token) {
