@@ -14,7 +14,7 @@ const ReviewSchema = new Schema({
     type: String,
   },
   mvId: {
-    tpye: String,
+    type: String,
   },
   likes: [
     {
