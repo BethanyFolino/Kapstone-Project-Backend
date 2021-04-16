@@ -11,7 +11,7 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
   },
 
-  choiceOfMovies: [
+  reviews: [
     {
       title: {
         type: String,
