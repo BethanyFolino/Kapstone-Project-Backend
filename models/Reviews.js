@@ -13,9 +13,9 @@ const ReviewSchema = new Schema({
   name: {
     type: String,
   },
-  mvId: {
+  imdbID: {
     type: String,
-    // required,
+    required: true,
   },
   likes: [
     {

@@ -12,7 +12,13 @@ const User = require("../../models/User");
 // @access Private
 router.post(
   "/",
-  [auth, [check("text", "Text is required").not().isEmpty()]],
+  [
+    auth,
+    [
+      check("text", "Text is required").not().isEmpty(),
+      check("imbdID", "movieId not present"),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -25,6 +31,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         user: req.user.id,
+        imdbID: req.body.imdbID,
       });
 
       const review = await newReview.save();
