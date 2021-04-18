@@ -11,11 +11,11 @@ const User = require("../../models/User");
 // @route GET api/profile/me
 // @desc Get current users profile
 // @access Private
-router.get("/", auth, async (req, res) => {
+router.get("/me", auth, async (req, res) => {
   try {
-    const profile = await (
-      await Profile.findOne({ user: req.user.id })
-    ).populated("user", ["name"]);
+    const profile = await Profile.findOne({
+      user: req.user.id,
+    }).populate("user", "name");
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
@@ -35,8 +35,10 @@ router.post(
   [
     auth,
     [
-      check("status", "Status is required").not().isEmpty(),
-      check("skills", "Skills is required").not().isEmpty(),
+      // skills && status
+      check("favoritemovie", "Favorite Movie is required").not().isEmpty(),
+      check("favoritemovie", "Favorite Game is required").not().isEmpty(),
+      check("favoritemovie", "Favorite TV Series is required").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -46,39 +48,46 @@ router.post(
     }
 
     const {
-      company,
-      website,
-      location,
+      // company,
+      // website,
+      // location,
       bio,
-      status,
-      githubusername,
-      skills,
-      youtube,
-      facebook,
-      twitter,
-      instagram,
-      linkedin,
+      // status,
+      // githubusername,
+      favoritemovie,
+      favoritegame,
+      favoritetvseries,
+      // youtube,
+      // facebook,
+      // twitter,
+      // instagram,
+      // linkedin,
     } = req.body;
     //Build profile object
+
     const profileFields = {};
     profileFields.user = req.user.id;
-    if (company) profileFields.company = company;
-    if (website) profileFields.website = website;
-    if (location) profileFields.location = location;
+    // if (company) profileFields.company = company;
+    // if (website) profileFields.website = website;
+    // if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
-    if (status) profileFields.status = status;
-    if (githubusername) profileFields.githubusername = githubusername;
-    if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
-    }
+    if (favoritemovie) profileFields.favoritemovie = favoritemovie;
+    if (favoritegame) profileFields.favoritegame = favoritegame;
+    if (favoritetvseries) profileFields.favoritetvseries = favoritetvseries;
+    // if (status) profileFields.status = status;
+    // if (githubusername) profileFields.githubusername = githubusername;
+    // if (skills) {
+    //   profileFields.skills = skills.split(",").map((skill) => skill.trim());
+    // }
 
     // Build social Object
-    profileFields.social = {};
-    if (youtube) profileFields.social.youtube = youtube;
-    if (youtube) profileFields.social.twitter = twitter;
-    if (youtube) profileFields.social.facebook = facebook;
-    if (youtube) profileFields.social.linkedin = linkedin;
-    if (youtube) profileFields.social.instagram = instagram;
+
+    // profileFields.social = {};
+    // if (youtube) profileFields.social.youtube = youtube;
+    // if (youtube) profileFields.social.twitter = twitter;
+    // if (youtube) profileFields.social.facebook = facebook;
+    // if (youtube) profileFields.social.linkedin = linkedin;
+    // if (youtube) profileFields.social.instagram = instagram;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -87,7 +96,7 @@ router.post(
         //Update
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
-          { $set: profileFiekds },
+          { $set: profileFields },
           { new: true }
         );
 
