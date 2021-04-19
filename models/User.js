@@ -14,6 +14,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // likes: [
+  //   {
+  //     imdbID: {
+  //       type: String,
+
+  //     },
+  //   }
+  // ]
 
   date: {
     type: Date,
