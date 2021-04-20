@@ -9,11 +9,10 @@ const User = require("../../models/User");
 
 // @route POST api/likes
 // @desc Like a movie
-// @access PRtivate
+// @access PRivate
 router.post(
   "/",
-  auth,
-  [check("imbdID", "movieId not present")],
+  [auth, [check("imbdID", "movieId not present")]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -23,8 +22,6 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select("-password");
       const newLike = new Like({
-        liked: true,
-        name: user.name,
         user: req.user.id,
         imdbID: req.body.imdbID,
       });
@@ -37,3 +34,5 @@ router.post(
     }
   }
 );
+
+module.exports = router;

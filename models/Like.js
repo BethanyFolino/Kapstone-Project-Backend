@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 // Build Like Schema
 const LikeSchema = new Schema({
-  imdbId: {
-    type: string,
+  imdbID: {
+    type: String,
     required: true,
   },
   users: [
