@@ -10,24 +10,6 @@ const User = require("../../models/User");
 // @route POST api/likes
 // @desc Like a movie
 // @access PRivate
-<<<<<<< HEAD
-router.post(
-  "/",
-  [auth, [check("imbdID", "movieId not present")],],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    try {
-      const user = await User.findById(req.user.id).select("-password");
-      const newLike = new Like({
-        userid: req.user.id,
-        name: user.name,
-        imdbID: req.body.imdbID,
-      });
-=======
 // router.post(
 //   "/",
 //   [auth, [check("imbdID", "movieId not present")]],
@@ -45,7 +27,6 @@ router.post(
 //           imdbID: req.body.imdbID,
 //           users: [user.id],
 //         });
->>>>>>> 6262ac0398a592edccc3544eb74556012ca1473d
 
 //         const like = await newLike.save();
 //       } else {
