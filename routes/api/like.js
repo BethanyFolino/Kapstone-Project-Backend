@@ -12,7 +12,7 @@ const User = require("../../models/User");
 // @access PRivate
 router.post(
   "/",
-  [auth, [check("imbdID", "movieId not present")]],
+  [auth, [check("imbdID", "movieId not present")],],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -22,7 +22,8 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select("-password");
       const newLike = new Like({
-        user: req.user.id,
+        userid: req.user.id,
+        name: user.name,
         imdbID: req.body.imdbID,
       });
 

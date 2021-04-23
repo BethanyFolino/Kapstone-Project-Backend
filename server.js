@@ -8,7 +8,7 @@ connectDB();
 
 // Init Middleware
 app.use(express.json({ extended: false }));
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "https://bethanyfolino.github.io/Kapstone-Project-3/" }));
 
 app.get("/", (req, res) => res.send("API running"));
 
