@@ -45,10 +45,10 @@ const Movie = ({ Title, Year, Poster, imdbID }) => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <ReviewForm imdbID={imdbID} />
+      {/* <ReviewForm imdbID={imdbID} />
       <Reviews imdbID={imdbID} /> 
-      <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={Poster} />
+      <Card style={{ width: '18rem' }}> */}
+  {/* <Card.Img variant="top" src={Poster} />
   <Card.Body>
     <Card.Title>Title: {Title}</Card.Title>
     <Card.Text>
@@ -57,11 +57,8 @@ const Movie = ({ Title, Year, Poster, imdbID }) => {
     <Card.Text>
     <Reviews imdbID={imdbID} />
     </Card.Text>
-    <Card.Text>
-    <Reviews imdbID={imdbID} />
-    </Card.Text>
-  </Card.Body>
-</Card>
+  </Card.Body> */}
+{/* </Card> */}
 </div>
     </>
   );
