@@ -9,6 +9,7 @@ import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import Profile from "./components/layout/Profile";
+import { BrowserRouter as Router } from 'react-router-dom';
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -27,7 +28,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      
+      <Router>
         <Fragment>
           <Navigation />
           <Route exact path="/" component={Base} />
@@ -40,6 +41,7 @@ const App = () => {
             <PrivateRoute exact path="/about" component={About} />
           </Switch>
         </Fragment>
+      </Router>
 
     </Provider>
   );
