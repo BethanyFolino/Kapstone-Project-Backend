@@ -32,3 +32,7 @@ What didn't go well - Could not get the profile state to hold after creating pro
 What we got done - Finished review schema, added like schema for mvoies => able to like on postman , but not on front end, added bootstrap and styling to all pages and components, cleaned up code. 
 
 What we are doing next - Finish getting our application deployed, fix visual bugs with bootstrap and styling, fix state with profile, fix liking movie feature. 
+
+// "devDependencies": {
+  //   "gh-pages": "^3.1.0"
+  // }
